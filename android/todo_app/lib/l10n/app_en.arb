@@ -1,0 +1,197 @@
+{
+  "@@locale": "en",
+  "home": "Home",
+  "@home": {
+    "description": "home page"
+  },
+  "task": "Task",
+  "@task": {
+    "description": "task"
+  },
+  "today": "Today",
+  "@today": {
+    "description": "Today's date"
+  },
+  "calendar": "Calendar",
+  "@calendar": {
+    "description": "Calendar screen title"
+  },
+  "task_detail": "Task Detail",
+  "@task_detail": {
+    "description": "task detail page"
+  },
+  "task_create": "Create Task",
+  "@task_create": {
+    "description": "create new task"
+  },
+  "settings": "Settings",
+  "@settings": {
+    "description": "settings page"
+  },
+  "language": "Language",
+  "@language": {
+    "description": "language settings"
+  },
+  "list_task": "Task List",
+  "@list_task": {
+    "description": "Title for the task list section"
+  },
+  "add_task": "Add Task",
+  "@add_task": {
+    "description": "Add new task button"
+  },
+  "edit_task": "Edit Task",
+  "@edit_task": {
+    "description": "Edit existing task"
+  },
+  "delete_task": "Delete Task",
+  "@delete_task": {
+    "description": "Delete task confirmation"
+  },
+  "task_title": "Task Title",
+  "@task_title": {
+    "description": "Input field for task title"
+  },
+  "task_description": "Task Description",
+  "@task_description": {
+    "description": "Input field for task description"
+  },
+  "save": "Save",
+  "@save": {
+    "description": "Save button"
+  },
+  "cancel": "Cancel",
+  "@cancel": {
+    "description": "Cancel button"
+  },
+  "category": "Category",
+  "@category": {
+    "description": "Task category"
+  },
+  "priority": "Priority",
+  "@priority": {
+    "description": "Task priority"
+  },
+  "status": "Status",
+  "@status": {
+    "description": "Task status"
+  },
+  "due_date": "Due Date",
+  "@due_date": {
+    "description": "Task due date"
+  },
+  "task_categories": "Task Categories",
+  "@task_categories": {
+    "description": "Title for task categories section"
+  },
+  "create_category": "Create Category",
+  "@create_category": {
+    "description": "Create new category"
+  },
+  "category_name": "Category Name",
+  "@category_name": {
+    "description": "Input field for category name"
+  },
+  "category_description": "Category Description",
+  "@category_description": {
+    "description": "Input field for category description"
+  },
+  "login": "Login",
+  "@login": {
+    "description": "Login screen title"
+  },
+  "create_account": "Create Account",
+  "@create_account": {
+    "description": "Create account screen title"
+  },
+  "username": "Username",
+  "@username": {
+    "description": "Username input field"
+  },
+  "email": "Email",
+  "@email": {
+    "description": "Email input field"
+  },
+  "password": "Password",
+  "@password": {
+    "description": "Password input field"
+  },
+  "confirm_password": "Confirm Password",
+  "@confirm_password": {
+    "description": "Confirm password input field"
+  },
+  "username_or_email": "Username or Email",
+  "@username_or_email": {
+    "description": "Username or email input field"
+  },
+  "please_enter_username": "Please enter username or email",
+  "@please_enter_username": {
+    "description": "Validation message for username"
+  },
+  "please_enter_password": "Please enter password",
+  "@please_enter_password": {
+    "description": "Validation message for password"
+  },
+  "please_enter_valid_email": "Please enter a valid email",
+  "@please_enter_valid_email": {
+    "description": "Validation message for email"
+  },
+  "password_length": "Password must be at least 6 characters",
+  "@password_length": {
+    "description": "Validation message for password length"
+  },
+  "passwords_not_match": "Passwords do not match",
+  "@passwords_not_match": {
+    "description": "Validation message for password match"
+  },
+  "statistics": "Statistics",
+  "@statistics": {
+    "description": "Statistics screen title"
+  },
+  "task_completion_status": "Task Completion Status",
+  "@task_completion_status": {
+    "description": "Title for task completion status chart"
+  },
+  "monthly_completed_tasks": "Monthly Completed Tasks",
+  "@monthly_completed_tasks": {
+    "description": "Title for monthly completed tasks chart"
+  },
+  "completed_tasks": "Completed Tasks",
+  "@completed_tasks": {
+    "description": "Title for completed tasks section"
+  },
+  "incomplete_tasks": "Incomplete Tasks",
+  "@incomplete_tasks": {
+    "description": "Title for incomplete tasks section"
+  },
+  "completed_tasks_count": "{count}",
+  "@completed_tasks_count": {
+    "description": "Number of completed tasks",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "incomplete_tasks_count": "{count}",
+  "@incomplete_tasks_count": {
+    "description": "Number of incomplete tasks",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "logout": "Logout",
+  "@logout": {
+    "description": "Logout button"
+  },
+  "page_not_found": "Page Not Found",
+  "@page_not_found": {
+    "description": "404 page title"
+  },
+  "go_to_home": "Go to Home",
+  "@go_to_home": {
+    "description": "Button to return to home page"
+  }
+}
