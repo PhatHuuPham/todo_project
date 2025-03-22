@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:todo_app/dao/task_dao.dart';
 import 'package:todo_app/services/task_service.dart';
 import '../models/task.dart';
 
 class TaskViewmodel extends ChangeNotifier {
   // final int userId; // Nhận userId từ constructor
-  TaskViewmodel() {
+  final TaskDao _taskDao;
+  TaskViewmodel(this._taskDao) {
     fetchTasksByUserId();
   }
 
@@ -33,7 +35,9 @@ class TaskViewmodel extends ChangeNotifier {
 
     try {
       _tasks =
+          // await _taskDao.findAllTasks();
           await TaskService().getTasksByUserId(prefs.getInt('userId') ?? 0);
+      notifyListeners(); // Thông báo UI rằng đang tải dữ liệu
     } catch (e) {
       _errorMessage = e.toString();
     } finally {
@@ -51,8 +55,10 @@ class TaskViewmodel extends ChangeNotifier {
     _isLoading = true;
     notifyListeners(); // Thông báo UI rằng đang tải
     try {
+      // await _taskDao.insertTask(task);
       await TaskService().createTask(task);
       await fetchTasksByUserId(); // Use current userId if task.userId is null
+
       _errorMessage = '';
     } catch (e) {
       _errorMessage = 'Failed to create task: ${e.toString()}';
@@ -68,7 +74,8 @@ class TaskViewmodel extends ChangeNotifier {
     // notifyListeners();
 
     try {
-      await TaskService().updateTask(task);
+      // await TaskService().updateTask(task);
+      await _taskDao.updateTask(task);
       await fetchTasksByUserId(); // Đợi fetchTasks hoàn thành
     } catch (e) {
       _errorMessage = e.toString();
@@ -81,7 +88,8 @@ class TaskViewmodel extends ChangeNotifier {
     // notifyListeners();
 
     try {
-      await TaskService().deleteTask(id);
+      // await TaskService().deleteTask(id);
+      await _taskDao.deleteTaskById(id);
       await fetchTasksByUserId(); // Đợi fetchTasks hoàn thành
     } catch (e) {
       _errorMessage = e.toString();
@@ -91,11 +99,24 @@ class TaskViewmodel extends ChangeNotifier {
 
   Future<void> updateTaskStatus(int id, String status) async {
     try {
-      await TaskService().updateTaskStatus(id, status);
+      // await TaskService().updateTaskStatus(id, status);
+      await _taskDao.updateTaskStatus(id, status);
       await fetchTasksByUserId(); // Đợi fetchTasks hoàn thành
     } catch (e) {
       _errorMessage = e.toString();
       notifyListeners();
+    }
+  }
+
+  Future<void> deleteAllTasks() async {
+    try {
+      await _taskDao.deleteAllTasks();
+      _tasks = []; // Clear local cache as well
+      notifyListeners();
+    } catch (e) {
+      _errorMessage = e.toString();
+      notifyListeners();
+      throw _errorMessage;
     }
   }
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
+import 'package:todo_app/database/app_database.dart';
 import 'package:todo_app/services/data/share_prefrence.dart';
 import 'package:todo_app/viewmodel/auth_viewmodel.dart';
 import 'package:todo_app/viewmodel/task_category_viewmodel.dart';
@@ -15,10 +16,15 @@ void main() async {
   WidgetsFlutterBinding
       .ensureInitialized(); // Đảm bảo Flutter đã khởi tạo trước khi gọi SharedPreferences
 
+  final database =
+      await $FloorAppDatabase.databaseBuilder('app_database.db').build();
+  final taskDao = database.taskDao;
+  final taskViewModel = TaskViewmodel(taskDao);
+
   runApp(MultiProvider(
     providers: [
       ChangeNotifierProvider(create: (context) => TaskCategoryViewmodel()),
-      ChangeNotifierProvider(create: (context) => TaskViewmodel()),
+      ChangeNotifierProvider(create: (context) => taskViewModel),
       ChangeNotifierProvider(create: (context) => UserViewmodel()),
       ChangeNotifierProvider(create: (context) => AuthViewModel()),
       ChangeNotifierProvider(create: (context) => Shareprefrence()),

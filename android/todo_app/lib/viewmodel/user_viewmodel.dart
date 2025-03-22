@@ -8,7 +8,7 @@ class UserViewmodel extends ChangeNotifier {
     // fetchUsers();
   }
 
-  List<User> _users = [];
+  final List<User> _users = [];
   bool _isLoading = false;
   String _errorMessage = '';
 

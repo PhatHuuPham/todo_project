@@ -17,6 +17,13 @@ class _TaskScreenState extends State<TaskScreen> with WidgetsBindingObserver {
   double containerCategorySize = 100;
 
   @override
+  void initState() {
+    super.initState();
+    Provider.of<TaskCategoryViewmodel>(context, listen: false)
+        .fetchTasksByUserId();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
 
@@ -65,8 +72,10 @@ class _TaskScreenState extends State<TaskScreen> with WidgetsBindingObserver {
                     trailing: Checkbox(
                       value: task.status == 'completed',
                       onChanged: (bool? newValue) {
-                        value.updateTaskStatus(task.id,
-                            newValue == true ? 'completed' : 'in_progress');
+                        if (task.id != null) {
+                          value.updateTaskStatus(task.id!,
+                              newValue == true ? 'completed' : 'in_progress');
+                        }
                       },
                     ),
                   );

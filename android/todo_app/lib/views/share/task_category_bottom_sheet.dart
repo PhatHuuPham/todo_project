@@ -63,10 +63,10 @@ class TaskCategoryBottomSheet extends StatelessWidget {
                                 onChanged: (bool? newValue) {
                                   if (newValue == true) {
                                     value.updateTaskStatus(
-                                        task.id, 'completed');
+                                        task.id!, 'completed');
                                   } else {
                                     value.updateTaskStatus(
-                                        task.id, 'in_progress');
+                                        task.id!, 'in_progress');
                                   }
                                 }),
                           );

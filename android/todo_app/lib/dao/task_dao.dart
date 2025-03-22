@@ -12,6 +12,9 @@ abstract class TaskDao {
   @Query('SELECT * FROM Task WHERE status = :status')
   Future<List<Task>> findTasksByStatus(String status);
 
+  @Query('DELETE FROM Task')
+  Future<void> deleteAllTasks();
+
   @insert
   Future<void> insertTask(Task task);
 
@@ -33,4 +36,7 @@ abstract class TaskDao {
 
   @Query('SELECT * FROM Task WHERE priority = :priority')
   Future<List<Task>> findTasksByPriority(String priority);
+
+  @Query('UPDATE Task SET status = :status WHERE id = :id')
+  Future<void> updateTaskStatus(int id, String status);
 }

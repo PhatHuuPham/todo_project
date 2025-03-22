@@ -5,7 +5,7 @@ import 'package:todo_app/viewmodel/user_viewmodel.dart';
 import 'package:todo_app/views/auth/login_screen.dart';
 
 class CreateAccountScreen extends StatefulWidget {
-  const CreateAccountScreen({Key? key}) : super(key: key);
+  const CreateAccountScreen({super.key});
 
   @override
   State<CreateAccountScreen> createState() => _CreateAccountScreenState();

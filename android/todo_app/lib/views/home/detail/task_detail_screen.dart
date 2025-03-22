@@ -51,6 +51,15 @@ class _TaskDetailScreenState extends State<TaskDetailScreen> {
       return Scaffold(
         appBar: AppBar(
           title: Text(l10n.task_detail),
+          actions: [
+            IconButton(
+              onPressed: () {
+                value.deleteTask(widget.task.id!);
+                Navigator.pop(context);
+              },
+              icon: const Icon(Icons.delete),
+            ),
+          ],
         ),
         body: SingleChildScrollView(
           padding: const EdgeInsets.all(16.0),

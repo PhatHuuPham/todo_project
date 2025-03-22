@@ -30,7 +30,7 @@ class _CreateTaskScreenState extends State<CreateTaskScreen> {
       return Scaffold(
         appBar: AppBar(
           title: Text(l10n.task_create),
-          actions: [],
+          actions: const [],
         ),
         body: SingleChildScrollView(
           padding: const EdgeInsets.all(16.0),
@@ -164,7 +164,6 @@ class _CreateTaskScreenState extends State<CreateTaskScreen> {
 
                   await value.createTask(
                     Task(
-                      id: 0,
                       title: titleController.text,
                       description: descriptionController.text,
                       userId: prefs.getInt('userId'),

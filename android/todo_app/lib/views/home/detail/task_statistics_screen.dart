@@ -178,10 +178,10 @@ class _TaskStatisticsScreenState extends State<TaskStatisticsScreen> {
                                     },
                                   ),
                                 ),
-                                rightTitles: AxisTitles(
+                                rightTitles: const AxisTitles(
                                   sideTitles: SideTitles(showTitles: false),
                                 ),
-                                topTitles: AxisTitles(
+                                topTitles: const AxisTitles(
                                   sideTitles: SideTitles(showTitles: false),
                                 ),
                               ),

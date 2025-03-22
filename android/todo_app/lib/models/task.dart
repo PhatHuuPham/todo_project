@@ -3,7 +3,7 @@ import 'package:floor/floor.dart';
 @entity
 class Task {
   @PrimaryKey(autoGenerate: true)
-  final int id;
+  final int? id;
   final int? userId;
   final String title;
   final String description;
@@ -22,7 +22,7 @@ class Task {
   final int? updatedAt; // Lưu timestamp trong SQLite
 
   Task({
-    this.id = 0,
+    this.id,
     this.userId,
     this.title = '',
     this.description = '',
@@ -59,7 +59,7 @@ class Task {
   // Chuyển từ object Task thành JSON (API)
   Map<String, dynamic> toJson() {
     return {
-      'id': id,
+      if (id != null) 'id': id,
       'user_id': userId,
       'title': title,
       'description': description,

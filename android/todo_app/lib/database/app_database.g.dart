@@ -96,7 +96,7 @@ class _$AppDatabase extends AppDatabase {
       },
       onCreate: (database, version) async {
         await database.execute(
-            'CREATE TABLE IF NOT EXISTS `Task` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `userId` INTEGER, `title` TEXT NOT NULL, `description` TEXT NOT NULL, `categoryId` INTEGER, `due_date` INTEGER, `status` TEXT NOT NULL, `priority` TEXT NOT NULL, `created_at` INTEGER, `updated_at` INTEGER)');
+            'CREATE TABLE IF NOT EXISTS `Task` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `userId` INTEGER, `title` TEXT NOT NULL, `description` TEXT NOT NULL, `categoryId` INTEGER, `due_date` INTEGER, `status` TEXT NOT NULL, `priority` TEXT NOT NULL, `created_at` INTEGER, `updated_at` INTEGER)');
 
         await callback?.onCreate?.call(database, version);
       },
@@ -179,7 +179,7 @@ class _$TaskDao extends TaskDao {
   Future<List<Task>> findAllTasks() async {
     return _queryAdapter.queryList('SELECT * FROM Task',
         mapper: (Map<String, Object?> row) => Task(
-            id: row['id'] as int,
+            id: row['id'] as int?,
             userId: row['userId'] as int?,
             title: row['title'] as String,
             description: row['description'] as String,
@@ -195,7 +195,7 @@ class _$TaskDao extends TaskDao {
   Future<Task?> findTaskById(int id) async {
     return _queryAdapter.query('SELECT * FROM Task WHERE id = ?1',
         mapper: (Map<String, Object?> row) => Task(
-            id: row['id'] as int,
+            id: row['id'] as int?,
             userId: row['userId'] as int?,
             title: row['title'] as String,
             description: row['description'] as String,
@@ -212,7 +212,7 @@ class _$TaskDao extends TaskDao {
   Future<List<Task>> findTasksByStatus(String status) async {
     return _queryAdapter.queryList('SELECT * FROM Task WHERE status = ?1',
         mapper: (Map<String, Object?> row) => Task(
-            id: row['id'] as int,
+            id: row['id'] as int?,
             userId: row['userId'] as int?,
             title: row['title'] as String,
             description: row['description'] as String,
@@ -223,6 +223,11 @@ class _$TaskDao extends TaskDao {
             createdAt: row['created_at'] as int?,
             updatedAt: row['updated_at'] as int?),
         arguments: [status]);
+  }
+
+  @override
+  Future<void> deleteAllTasks() async {
+    await _queryAdapter.queryNoReturn('DELETE FROM Task');
   }
 
   @override
@@ -239,7 +244,7 @@ class _$TaskDao extends TaskDao {
     return _queryAdapter.queryList(
         'SELECT * FROM Task WHERE due_date >= ?1 AND due_date <= ?2',
         mapper: (Map<String, Object?> row) => Task(
-            id: row['id'] as int,
+            id: row['id'] as int?,
             userId: row['userId'] as int?,
             title: row['title'] as String,
             description: row['description'] as String,
@@ -256,7 +261,7 @@ class _$TaskDao extends TaskDao {
   Future<List<Task>> findTasksByPriority(String priority) async {
     return _queryAdapter.queryList('SELECT * FROM Task WHERE priority = ?1',
         mapper: (Map<String, Object?> row) => Task(
-            id: row['id'] as int,
+            id: row['id'] as int?,
             userId: row['userId'] as int?,
             title: row['title'] as String,
             description: row['description'] as String,
@@ -267,6 +272,16 @@ class _$TaskDao extends TaskDao {
             createdAt: row['created_at'] as int?,
             updatedAt: row['updated_at'] as int?),
         arguments: [priority]);
+  }
+
+  @override
+  Future<void> updateTaskStatus(
+    int id,
+    String status,
+  ) async {
+    await _queryAdapter.queryNoReturn(
+        'UPDATE Task SET status = ?2 WHERE id = ?1',
+        arguments: [id, status]);
   }
 
   @override

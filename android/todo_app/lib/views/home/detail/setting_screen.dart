@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:todo_app/dao/task_dao.dart';
 import 'package:todo_app/viewmodel/setting_provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:todo_app/viewmodel/task_viewmodel.dart';
 
 class SettingScreen extends StatefulWidget {
   const SettingScreen({super.key});
@@ -75,6 +77,29 @@ class _SettingScreenState extends State<SettingScreen> {
                 }
               },
             ),
+          ),
+
+          const Divider(),
+
+          ListTile(
+            leading: const Icon(Icons.color_lens),
+            title: Text("xoá cache"),
+            onTap: () async {
+              final taskViewModel =
+                  Provider.of<TaskViewmodel>(context, listen: false);
+              // Get database instance and clear tasks
+              try {
+                // Delete tasks from database then refresh list
+                await taskViewModel.deleteAllTasks();
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(content: Text('Cache cleared')),
+                );
+              } catch (e) {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(content: Text('Error: ${e.toString()}')),
+                );
+              }
+            },
           ),
         ],
       ),

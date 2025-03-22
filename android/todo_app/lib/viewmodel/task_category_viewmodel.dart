@@ -49,6 +49,7 @@ class TaskCategoryViewmodel extends ChangeNotifier with WidgetsBindingObserver {
     try {
       _taskCategories = await TaskCategoriesService()
           .getTasksByUserId(prefs.getInt('userId') ?? 0);
+      notifyListeners(); // Thông báo UI rằng đang tải dữ liệu
     } catch (e) {
       _errorMessage = e.toString();
     } finally {

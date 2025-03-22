@@ -116,7 +116,7 @@ class _CalendarScreenState extends State<CalendarScreen> {
                         trailing: Checkbox(
                           value: task.status == 'completed',
                           onChanged: (bool? value) {
-                            taskViewModel.updateTaskStatus(task.id,
+                            taskViewModel.updateTaskStatus(task.id!,
                                 value == true ? 'completed' : 'in_progress');
                           },
                         ),

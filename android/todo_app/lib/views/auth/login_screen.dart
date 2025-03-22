@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:todo_app/viewmodel/auth_viewmodel.dart';
+import 'package:todo_app/viewmodel/task_category_viewmodel.dart';
 import 'package:todo_app/viewmodel/task_viewmodel.dart';
 import 'package:todo_app/views/auth/create_account_screen.dart';
 import 'package:todo_app/views/home/home.dart';
 
 class LoginScreen extends StatefulWidget {
-  const LoginScreen({Key? key}) : super(key: key);
+  const LoginScreen({super.key});
 
   @override
   State<LoginScreen> createState() => _LoginScreenState();
