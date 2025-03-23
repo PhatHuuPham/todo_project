@@ -96,7 +96,7 @@ class _$AppDatabase extends AppDatabase {
       },
       onCreate: (database, version) async {
         await database.execute(
-            'CREATE TABLE IF NOT EXISTS `Task` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `userId` INTEGER, `title` TEXT NOT NULL, `description` TEXT NOT NULL, `categoryId` INTEGER, `due_date` INTEGER, `status` TEXT NOT NULL, `priority` TEXT NOT NULL, `created_at` INTEGER, `updated_at` INTEGER)');
+            'CREATE TABLE IF NOT EXISTS `Task` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `userId` INTEGER, `title` TEXT NOT NULL, `description` TEXT NOT NULL, `categoryId` INTEGER, `due_date` INTEGER, `status` TEXT NOT NULL, `priority` TEXT NOT NULL, `isSynced` INTEGER, `created_at` INTEGER, `updated_at` INTEGER)');
 
         await callback?.onCreate?.call(database, version);
       },
@@ -127,6 +127,8 @@ class _$TaskDao extends TaskDao {
                   'due_date': item.dueDate,
                   'status': item.status,
                   'priority': item.priority,
+                  'isSynced':
+                      item.isSynced == null ? null : (item.isSynced! ? 1 : 0),
                   'created_at': item.createdAt,
                   'updated_at': item.updatedAt
                 }),
@@ -143,6 +145,8 @@ class _$TaskDao extends TaskDao {
                   'due_date': item.dueDate,
                   'status': item.status,
                   'priority': item.priority,
+                  'isSynced':
+                      item.isSynced == null ? null : (item.isSynced! ? 1 : 0),
                   'created_at': item.createdAt,
                   'updated_at': item.updatedAt
                 }),
@@ -159,6 +163,8 @@ class _$TaskDao extends TaskDao {
                   'due_date': item.dueDate,
                   'status': item.status,
                   'priority': item.priority,
+                  'isSynced':
+                      item.isSynced == null ? null : (item.isSynced! ? 1 : 0),
                   'created_at': item.createdAt,
                   'updated_at': item.updatedAt
                 });
@@ -187,6 +193,8 @@ class _$TaskDao extends TaskDao {
             dueDate: row['due_date'] as int?,
             status: row['status'] as String,
             priority: row['priority'] as String,
+            isSynced:
+                row['isSynced'] == null ? null : (row['isSynced'] as int) != 0,
             createdAt: row['created_at'] as int?,
             updatedAt: row['updated_at'] as int?));
   }
@@ -203,6 +211,8 @@ class _$TaskDao extends TaskDao {
             dueDate: row['due_date'] as int?,
             status: row['status'] as String,
             priority: row['priority'] as String,
+            isSynced:
+                row['isSynced'] == null ? null : (row['isSynced'] as int) != 0,
             createdAt: row['created_at'] as int?,
             updatedAt: row['updated_at'] as int?),
         arguments: [id]);
@@ -220,6 +230,8 @@ class _$TaskDao extends TaskDao {
             dueDate: row['due_date'] as int?,
             status: row['status'] as String,
             priority: row['priority'] as String,
+            isSynced:
+                row['isSynced'] == null ? null : (row['isSynced'] as int) != 0,
             createdAt: row['created_at'] as int?,
             updatedAt: row['updated_at'] as int?),
         arguments: [status]);
@@ -252,6 +264,8 @@ class _$TaskDao extends TaskDao {
             dueDate: row['due_date'] as int?,
             status: row['status'] as String,
             priority: row['priority'] as String,
+            isSynced:
+                row['isSynced'] == null ? null : (row['isSynced'] as int) != 0,
             createdAt: row['created_at'] as int?,
             updatedAt: row['updated_at'] as int?),
         arguments: [startDate, endDate]);
@@ -269,6 +283,8 @@ class _$TaskDao extends TaskDao {
             dueDate: row['due_date'] as int?,
             status: row['status'] as String,
             priority: row['priority'] as String,
+            isSynced:
+                row['isSynced'] == null ? null : (row['isSynced'] as int) != 0,
             createdAt: row['created_at'] as int?,
             updatedAt: row['updated_at'] as int?),
         arguments: [priority]);

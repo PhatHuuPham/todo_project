@@ -74,8 +74,8 @@ class TaskViewmodel extends ChangeNotifier {
     // notifyListeners();
 
     try {
-      // await TaskService().updateTask(task);
-      await _taskDao.updateTask(task);
+      await TaskService().updateTask(task);
+      // await _taskDao.updateTask(task);
       await fetchTasksByUserId(); // Đợi fetchTasks hoàn thành
     } catch (e) {
       _errorMessage = e.toString();
@@ -88,8 +88,8 @@ class TaskViewmodel extends ChangeNotifier {
     // notifyListeners();
 
     try {
-      // await TaskService().deleteTask(id);
-      await _taskDao.deleteTaskById(id);
+      await TaskService().deleteTask(id);
+      // await _taskDao.deleteTaskById(id);
       await fetchTasksByUserId(); // Đợi fetchTasks hoàn thành
     } catch (e) {
       _errorMessage = e.toString();
@@ -99,8 +99,8 @@ class TaskViewmodel extends ChangeNotifier {
 
   Future<void> updateTaskStatus(int id, String status) async {
     try {
-      // await TaskService().updateTaskStatus(id, status);
-      await _taskDao.updateTaskStatus(id, status);
+      await TaskService().updateTaskStatus(id, status);
+      // await _taskDao.updateTaskStatus(id, status);
       await fetchTasksByUserId(); // Đợi fetchTasks hoàn thành
     } catch (e) {
       _errorMessage = e.toString();

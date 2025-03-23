@@ -46,7 +46,7 @@ dependencies:
   fl_chart: ^0.64.0
   flutter_image_compress: ^2.4.0
   image_picker: ^1.1.2
-  # connectivity_plus: ^5.0.2
+  connectivity_plus: ^5.0.2
   floor: ^1.4.0
   sqflite: ^2.3.0
   

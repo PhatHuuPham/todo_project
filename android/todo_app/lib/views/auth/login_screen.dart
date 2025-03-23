@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:todo_app/viewmodel/auth_viewmodel.dart';
-import 'package:todo_app/viewmodel/task_category_viewmodel.dart';
 import 'package:todo_app/viewmodel/task_viewmodel.dart';
 import 'package:todo_app/views/auth/create_account_screen.dart';
 import 'package:todo_app/views/home/home.dart';
@@ -28,7 +27,7 @@ class _LoginScreenState extends State<LoginScreen> {
   void _handleLogin() async {
     if (_formKey.currentState!.validate()) {
       final authViewModel = Provider.of<AuthViewModel>(context, listen: false);
-
+      // await Provider.of<TaskViewmodel>(context, listen: false).syncLocalToApi();
       final success = await authViewModel.login(
         _usernameController.text,
         _passwordController.text,

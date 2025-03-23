@@ -15,6 +15,8 @@ class Task {
   final String status;
   final String priority;
 
+  final bool? isSynced;
+
   @ColumnInfo(name: 'created_at')
   final int? createdAt; // Lưu timestamp trong SQLite
 
@@ -30,6 +32,7 @@ class Task {
     this.dueDate,
     this.status = 'pending',
     this.priority = 'medium',
+    this.isSynced = false,
     this.createdAt,
     this.updatedAt,
   });
@@ -47,6 +50,7 @@ class Task {
           : null,
       status: json['status'],
       priority: json['priority'],
+      isSynced: json['is_synced'],
       createdAt: json['created_at'] != null
           ? DateTime.parse(json['created_at']).millisecondsSinceEpoch
           : null,
@@ -69,6 +73,7 @@ class Task {
           : null,
       'status': status,
       'priority': priority,
+      'is_synced': isSynced,
       'created_at': createdAt != null
           ? DateTime.fromMillisecondsSinceEpoch(createdAt!).toIso8601String()
           : null,
